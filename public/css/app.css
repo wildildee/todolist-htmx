@@ -296,7 +296,13 @@ li::marker {
 }
 
 ::-webkit-scrollbar {
-    height: var(--line-height);
+  width: 1ch;
+  background-color: var(--text-color-alt);
+  scrollbar-width: calc(var(--line-height) * 2);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--background-color-alt);
+  height: calc(var(--line-height) * 2);
 }
 
 input, button, textarea {

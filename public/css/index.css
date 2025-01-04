@@ -37,6 +37,15 @@
   width: 100%;
   margin-left: 1ch;
   margin-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollarea {
+  margin-top: 0;
+  overflow-y: scroll;
+  height: 100%;
+  scroll-snap-type: y mandatory;
 }
 
 .line {
@@ -45,10 +54,15 @@
   gap: 1ch;
   margin-top: 0;
   margin-bottom: calc(var(--line-height) - 0.1rem);
+  scroll-snap-align: start;
 }
 .line:first-child {
   margin-bottom: var(--line-height);
   color: var(--text-color-alt)
+}
+
+.line:last-child {
+  margin-bottom: 0;
 }
 
 .line > p {
@@ -58,18 +72,6 @@
 
 .line > p:first-child:hover {
   cursor: pointer;
-}
-
-.line > textarea {
-  resize: none;
-  border: 0;
-  outline: none;
-  padding: 0;
-  height: var(--line-height);
-  width: 100%;
-  line-height: var(--line-height);
-  text-overflow: clip;
-  text-wrap-mode: wrap;
 }
 
 .line > p:last-child {
