@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hallo!</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <div class="layout">
+      <div class="journalTabs" hx-get="/journals" hx-trigger="load" hx-swap="innerHTML"></div>
+      <div class="pageTabs"></div>
+      <div class="content"></div>
+    </div>
+  </body>
+</html>

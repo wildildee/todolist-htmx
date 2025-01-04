@@ -5,13 +5,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "debug": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "debug": "nodemon server/server.js",
+    "start": "node server/server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "express": "^4.21.2",
+    "handlebars": "^4.7.8",
     "nodemon": "^3.1.9",
     "sqlite3": "^5.1.7"
   }

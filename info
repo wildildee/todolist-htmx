@@ -1,4 +1,12 @@
-- Monospace Styling https://owickstrom.github.io/the-monospace-web/#forms
+TODO / Notes App
 
+- Monospace Styling https://owickstrom.github.io/the-monospace-web/#forms
+- CSS
 - HTMX frontend
-- js backend
+- Node.js backend
+- sqlite Database
+- Handlebars templates https://handlebarsjs.com/
+
+- Journals
+- Pages (Either TODO or Notes)
+- Content (Tasks or Notes)
