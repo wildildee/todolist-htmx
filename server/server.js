@@ -11,10 +11,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url)) + "/../";
 function template(filename, data)
 {
   var source   = readFileSync(filename,'utf8').toString();
-  return Handlebars.compile(source);
+  return Handlebars.compile(source)(data);
 }
-
-const journalTab = template(__dirname + "templates/journalTab.hbs");
 
 // Create app
 const app = express();
@@ -40,13 +38,21 @@ app.post("/clicked", (req, res) => {
 // Get all journals for user and return
 app.get("/journals", (req, res) => {
   let journals = database.getAllJournals(1);
-  let html = journals.map((x) => journalTab(x)).join("\n");
+  journals.forEach(journal => {
+    journal.journalType = journal.journalType ? "T" : "N";
+  });
+  let html = journals.map((x) => template(__dirname + "templates/journalTab.hbs", x)).join("\n");
   res.send(html);
 });
 
-app.get("/pages", (req, res) => {
-  let journals = database.getAllJournals(1);
-  let html = journals.map((x) => journalTab(x)).join("\n");
+app.get("/journal", (req, res) => {
+  // Check for the journalID query
+  if (req.query.journalID == null) return res.sendStatus(500); 
+  let journalID = Number(req.query.journalID);
+  // Verify the journalID is provided and valid
+
+  let pages = database.getJournalData(journalID);
+  let html = pages.map((x) => template(__dirname + "templates/pageTab.hbs", x)).join("\n");
   res.send(html);
 });
 

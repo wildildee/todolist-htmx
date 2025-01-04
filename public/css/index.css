@@ -1,0 +1,95 @@
+.layout {
+  display: flex;
+  gap: 1ch;
+  width: 100%;
+  height: calc(var(--line-height) * 36);
+  margin-bottom: var(--line-height);
+}
+
+.journalTabs {
+  width: 20ch;
+  height: 100%;
+}
+
+.journalTabs > button {
+  width: 20ch;
+  margin-bottom: 1ch;
+}
+.journalTabs > button > span {
+  margin-top: 0;
+  height: var(--line-height);
+  display: inline-block;
+}
+.journalTabs > button > span:first-child {
+  margin-right: 1ch;
+  width: 16ch;
+}
+
+.journalTabs > button > .N {
+  color: #CE9178;
+}
+
+.journalTabs > button > .T {
+  color: #0DBC79;
+}
+
+.content {
+  width: 100%;
+  margin-left: 1ch;
+  margin-top: 0;
+}
+
+.line {
+  width: 100%;
+  display: flex;
+  gap: 1ch;
+  margin-top: 0;
+  margin-bottom: calc(var(--line-height) - 0.1rem);
+}
+.line:first-child {
+  margin-bottom: var(--line-height);
+  color: var(--text-color-alt)
+}
+
+.line > p {
+  margin: 0;
+  display: inline-block;
+}
+
+.line > p:first-child:hover {
+  cursor: pointer;
+}
+
+.line > textarea {
+  resize: none;
+  border: 0;
+  outline: none;
+  padding: 0;
+  height: var(--line-height);
+  width: 100%;
+  line-height: var(--line-height);
+  text-overflow: clip;
+  text-wrap-mode: wrap;
+}
+
+.line > p:last-child {
+  outline: 0;
+  width: 100%;
+}
+
+.bordered {
+  border: var(--border-thickness) solid var(--text-color);
+  padding: 
+    calc(var(--line-height) / 2 - var(--border-thickness))
+    calc(1ch - var(--border-thickness));
+  margin: 0;
+  font: inherit;
+  font-weight: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

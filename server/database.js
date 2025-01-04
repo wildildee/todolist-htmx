@@ -42,11 +42,11 @@ export class Database {
 
   // Return a list of all journals for the userID
   getAllJournals(userID) {
-    return [{"journalID": 1, "journalName": "Blank Journal"}]
+    return [{"journalID": 1, "journalName": "Blank Journal", "journalType": 1}, {"journalID": 1, "journalName": "Blank Journal", "journalType": 0}, {"journalID": 1, "journalName": "Blank Journal", "journalType": 0}, {"journalID": 1, "journalName": "Blank Journal", "journalType": 0}]
   }
 
   // Return the journal data for the journalID
   getJournalData(journalID) {
-    return [{"pageID": 1, "pageName": "wdawd", "lines": ["awdawdaw", "awdawgrtdhtyjk", "jhytrjtgyjaq"]}]
+    return [{"pageID": 1, "pageName": "wdawd", "content": ["awdawdaw", "awdawgrtdhtyjk", "jhytrjtgyjaq"]}]
   }
 }

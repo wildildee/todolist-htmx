@@ -2,13 +2,21 @@
 <html>
   <head>
     <title>Hallo!</title>
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="/js/index.js"></script>
   </head>
   <body>
-    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <header>Header</header>
     <div class="layout">
       <div class="journalTabs" hx-get="/journals" hx-trigger="load" hx-swap="innerHTML"></div>
-      <div class="pageTabs"></div>
-      <div class="content"></div>
+      <div class="content bordered" style="text-wrap: wrap;">
+        <div class="line"><p>~/morgan2548510/Blank_Journal.todo</p></div>
+        <div class="line"><p>□</p><textarea rows="1" oninput="autoGrowTextarea(this)">awdiuhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</textarea></div>
+        <div class="line"><p>□</p><p contenteditable="plaintext-only" hx-get="/awdawd" hx-trigger="focusout" >awdiuhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p></div>
+      </div>
     </div>
+    <footer>Footer</footer>
   </body>
 </html>
