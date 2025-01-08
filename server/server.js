@@ -7,12 +7,18 @@ import Handlebars from "handlebars";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)) + "/../";
 
+const JOURNAL_TYPE = {
+  TODO: 0,
+  NOTES: 1
+};
+
 // Templates
 function template(filename, data)
 {
   var source   = readFileSync(filename,'utf8').toString();
   return Handlebars.compile(source)(data);
 }
+
 
 // Create app
 const app = express();
@@ -39,7 +45,7 @@ app.post("/clicked", (req, res) => {
 app.get("/journals", (req, res) => {
   let journals = database.getAllJournals(1);
   journals.forEach(journal => {
-    journal.journalType = journal.journalType ? "T" : "N";
+    journal.journalType = journal.journalType == JOURNAL_TYPE.TODO? "T" : "N";
   });
   let html = journals.map((x) => template(__dirname + "templates/journalTab.hbs", x)).join("\n");
   res.send(html);
@@ -51,8 +57,16 @@ app.get("/journal", (req, res) => {
   let journalID = Number(req.query.journalID);
   // Verify the journalID is provided and valid
 
-  let pages = database.getJournalData(journalID);
-  let html = pages.map((x) => template(__dirname + "templates/pageTab.hbs", x)).join("\n");
+  let journalData = database.getJournalData(journalID);
+  let x = {
+    user: "morgan2548510",
+    journalName: journalData.journalName,
+    content: journalData.content,
+    prefix: journalData.journalType == JOURNAL_TYPE.TODO? "□" : ">",
+    journalID: journalData.journalID,
+    fileType: journalData.journalType == JOURNAL_TYPE.TODO? "todo" : "note"
+  }
+  let html = template(__dirname + "templates/openJournal.hbs", x);
   res.send(html);
 });
 

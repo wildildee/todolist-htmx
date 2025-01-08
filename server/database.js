@@ -1,6 +1,7 @@
 import sqlite3 from "sqlite3";
 
 export class Database {
+
   constructor(filepath) {
     // Create database
     this.database = new sqlite3.Database(filepath, (err) => {
@@ -47,6 +48,6 @@ export class Database {
 
   // Return the journal data for the journalID
   getJournalData(journalID) {
-    return [{"pageID": 1, "pageName": "wdawd", "content": ["awdawdaw", "awdawgrtdhtyjk", "jhytrjtgyjaq"]}]
+    return {"journalID": 1, "journalName": "Blank Journal", "journalType": 1, "content": ["awdawdaw", "awdawgrtdhtyjk", "jhytrjtgyjaq"]}
   }
 }
