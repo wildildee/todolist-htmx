@@ -1,6 +1,9 @@
-<div class="headline"><p>~/{{user}}/{{journalName}}.{{fileType}}</p></div>
+<div class="headline">
+  <p>~<span id="username">/{{user}}</span>/{{journalName}}.{{fileType}}</p>
+  <p></p>
+</div>
 <div class="journalContent scrollarea">
   {{#each content}}
-  <div class="line"><p class="line-prefix">{{../prefix}}</p><p contenteditable="plaintext-only" hx-get="/updateText?journalID={{../journalID}}" hx-trigger="focusout" hx-vars="text:assembleContent()" >{{this}}</p></div>
+  <div class="line"><p class="{{../typeClass}} prefix">{{../prefix}}</p><p contenteditable="plaintext-only" hx-get="/updateText?journalID={{../journalID}}" hx-trigger="focusout" hx-vars="text:assembleContent()" >{{this}}</p></div>
   {{/each}}
   </div>

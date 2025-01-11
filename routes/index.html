@@ -11,10 +11,7 @@
     <header>Header</header>
     <div class="layout">
       <div class="journalTabs" hx-get="/journals" hx-trigger="load" hx-swap="innerHTML"></div>
-      <div class="openJournal bordered" style="text-wrap: wrap;">
-        <div class="line"><p>No journal open</p></div>
-        <div class="line"><p>Open one by clicking on one of the jounals on the left</p></div>
-      </div>
+      <div class="openJournal bordered" hx-get="/journals/get" hx-trigger="load" hx-swap="innerHTML" style="text-wrap: wrap;"></div>
     </div>
     <footer>Footer</footer>
   </body>

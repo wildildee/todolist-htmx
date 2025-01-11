@@ -14,6 +14,7 @@
 .journalTabs > button {
   width: 20ch;
   margin-bottom: 1ch;
+  display: flex;
 }
 .journalTabs > button > span {
   margin-top: 0;
@@ -25,11 +26,11 @@
   width: 16ch;
 }
 
-.journalTabs > button > .N {
+.note.indicator {
   color: #CE9178;
 }
 
-.journalTabs > button > .T {
+.todo.indicator {
   color: #0DBC79;
 }
 
@@ -58,9 +59,10 @@
 }
 
 .headline {
-
   margin-bottom: var(--line-height);
-  color: var(--text-color-alt)
+  color: var(--text-color-alt);
+  container-type: inline-size;
+  container-name: headline;
 }
 .headline > p {
   margin: 0;
@@ -68,18 +70,28 @@
 .line:last-child {
   margin-bottom: 0;
 }
+@container headline (width < 40ch) {
+ span#username {
+  display: none;
+  color: red
+ } 
+}
 
 .line > p {
   margin: 0;
   display: inline-block;
 }
 
-.line > .line-prefix {
+.todo.prefix{
   cursor: pointer;
 }
 
 .line > p:last-child {
   outline: 0;
+  width: 100%;
+}
+
+.new-journal {
   width: 100%;
 }
 

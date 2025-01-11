@@ -1,1 +1,8 @@
-<button hx-get="/journal" hx-target=".openJournal" hx-swap="innerHTML" name="journalID" value={{journalID}}><span>{{journalName}}</span><span class={{journalType}}>{{journalType}}</span></button>
+{{#each journals}}
+<button hx-get="/journals/get" hx-target=".openJournal" hx-swap="innerHTML" name="journalID" value={{journalID}}>
+  <span>{{journalName}}</span>
+  <span class="{{typeClass}} indicator">{{journalType}}</span>
+</button>
+{{/each}}
+<input class="new-journal" placeholder="New Journal" hx-post="journal/create", name="journalName">
+</input>

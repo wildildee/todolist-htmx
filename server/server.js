@@ -36,26 +36,62 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "routes/index.html");
 });
 
+//
 // Backend API
-app.post("/clicked", (req, res) => {
-  res.send("Hello, World!");
+//
+
+// Create a new session using the provided username and passhash
+app.post("/sessions/create", (req, res) => {
+  let username = req.query.username;
+  let passhash = req.query.passhash;
+  
+  if (username == undefined || passhash == undefined || username.indexOf("'") != -1) {
+    res.sendStatus(500)
+    return
+  } 
+
+  // Get the passhash from db and confirm it matches
+  
+
 });
 
 // Get all journals for user and return
 app.get("/journals", (req, res) => {
   let journals = database.getAllJournals(1);
+  let x = {journals: []};
   journals.forEach(journal => {
-    journal.journalType = journal.journalType == JOURNAL_TYPE.TODO? "T" : "N";
+    x.journals.push({
+      journalName: journal.journalName,
+      journalID: journal.journalID,
+      journalType: journal.journalType == JOURNAL_TYPE.TODO? "T" : "N",
+      typeClass: journal.journalType == JOURNAL_TYPE.TODO? "todo" : "note"
+    });
   });
-  let html = journals.map((x) => template(__dirname + "templates/journalTab.hbs", x)).join("\n");
+
+  let html = template(__dirname + "templates/journalTab.hbs", x);
   res.send(html);
 });
 
-app.get("/journal", (req, res) => {
+// Create a new blank journal
+app.post("/journals/create", (req, res) => {
+  
+});
+
+// Get specific journal for user and return
+app.get("/journals/get", (req, res) => {
   // Check for the journalID query
-  if (req.query.journalID == null) return res.sendStatus(500); 
-  let journalID = Number(req.query.journalID);
+  if (req.query.journalID == null) {
+    let html = template(__dirname + "templates/noOpenJournal.hbs");
+    res.send(html);
+    return
+  }
+
   // Verify the journalID is provided and valid
+  let journalID = Number(req.query.journalID);
+  if (journalID == NaN) {
+    res.sendStatus(500); 
+    return
+  }
 
   let journalData = database.getJournalData(journalID);
   let x = {
@@ -63,6 +99,7 @@ app.get("/journal", (req, res) => {
     journalName: journalData.journalName,
     content: journalData.content,
     prefix: journalData.journalType == JOURNAL_TYPE.TODO? "□" : ">",
+    typeClass: journalData.journalType == JOURNAL_TYPE.TODO? "todo" : "note",
     journalID: journalData.journalID,
     fileType: journalData.journalType == JOURNAL_TYPE.TODO? "todo" : "note"
   }
