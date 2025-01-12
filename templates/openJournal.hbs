@@ -4,6 +4,6 @@
 </div>
 <div class="journalContent scrollarea">
   {{#each content}}
-  <div class="line"><p class="{{../typeClass}} prefix">{{../prefix}}</p><p contenteditable="plaintext-only" hx-get="/updateText?journalID={{../journalID}}" hx-trigger="focusout" hx-vars="text:assembleContent()" >{{this}}</p></div>
+  <div class="line"><p class="{{../typeClass}} prefix">{{../prefix}}</p><p contenteditable="plaintext-only" hx-get="/updateText?journalID={{../journalID}}" hx-trigger="input delay:0.5s" hx-vars="text:assembleContent()" >{{this}}</p></div>
   {{/each}}
   </div>

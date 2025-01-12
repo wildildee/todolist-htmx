@@ -62,7 +62,7 @@ export class Database {
       SELECT (passHash) FROM users
       WHERE username = '${username}';
       `, (err, row) => {
-
+        print(row)
       });
   }
 }
